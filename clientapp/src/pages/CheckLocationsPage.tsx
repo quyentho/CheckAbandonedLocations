@@ -4,6 +4,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { object, string } from "yup";
 import { CheckLocationResponse } from "../types/CheckLocationResponse";
 import ResultTable from "../components/ResultTable";
+import { splitByEndLine } from "../utils/splitByEndLine";
 
 const locationsSchema = object().shape({
   addresses: string().required(),
@@ -17,11 +18,7 @@ export const CheckLocationsPage = () => {
       addresses: "",
     },
     onSubmit: async (values, formikHelpers) => {
-      const addresses = values.addresses
-        .split(/\r?\n/)
-        .map((s) => s.trim())
-        .filter(Boolean);
-      console.log(addresses);
+      const addresses = splitByEndLine(values.addresses);
 
       try {
         const response = await fetch("/api/check", {
@@ -45,7 +42,7 @@ export const CheckLocationsPage = () => {
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label>Input Addresses:</Form.Label>
+                  <Form.Label>Nhập địa chỉ:</Form.Label>
                   <Form.Control
                     name="addresses"
                     value={formik.values.addresses}
@@ -57,7 +54,7 @@ export const CheckLocationsPage = () => {
                 </Form.Group>
                 <div className="d-flex justify-content-end">
                   <Button size="lg" type="submit">
-                    Check
+                    Kiểm tra
                   </Button>
                   <Button
                     size="lg"

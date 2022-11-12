@@ -40,7 +40,7 @@ app.MapPost("/api/add", async (AddLocationsRequest request, ILocationRepository 
     {
         foreach (var location in request.Locations)
         {
-            await repository.AddAbandonedLocationAsync(location.ToLower());
+            await repository.AddAbandonedLocationAsync(location.ToLower().Trim());
         }
 
         return Results.Ok();
