@@ -1,4 +1,5 @@
-export function selectElementContents(el: HTMLElement) {
+export function copyElementToClipboard(el: HTMLElement) {
+  if (!el) return false;
   const range = document.createRange();
   const selection = window.getSelection()!;
   selection.removeAllRanges();
@@ -9,5 +10,7 @@ export function selectElementContents(el: HTMLElement) {
     range.selectNode(el);
     selection.addRange(range);
   }
+  console.log("here", selection);
   document.execCommand("Copy");
+  return true;
 }
