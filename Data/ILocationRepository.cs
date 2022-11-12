@@ -4,7 +4,7 @@ namespace CheckLocationElectronOne.Data;
 
 public interface ILocationRepository
 {
-    Task<string[]> GetAbandonedLocations();
+    Task<string[]> GetAbandonedLocationsAsync();
 
-    Task AddAbandonedLocation(string name);
+    Task AddAbandonedLocationAsync(string name);
 }

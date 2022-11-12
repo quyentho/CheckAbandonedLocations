@@ -232,3 +232,5 @@ _Pvt_Extensions
 .fake/
 docker-compose.production.yml
 .env.prod
+.vscode/
+redis_data/

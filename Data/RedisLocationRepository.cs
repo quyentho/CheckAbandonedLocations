@@ -12,13 +12,13 @@ public class RedisLocationRepository : ILocationRepository
         _redisDatabase = redis.GetDatabase();
     }
 
-    public async Task<string[]> GetAbandonedLocations()
+    public async Task<string[]> GetAbandonedLocationsAsync()
     {
         var abandonedLocations = await _redisDatabase.SetMembersAsync(Constants.AbandonedLocationsRedisKey);
         return abandonedLocations.ToStringArray();
     }
 
-    public async Task AddAbandonedLocation(string locationName)
+    public async Task AddAbandonedLocationAsync(string locationName)
     {
         await _redisDatabase.SetAddAsync(Constants.AbandonedLocationsRedisKey, locationName);
     }

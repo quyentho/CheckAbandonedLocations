@@ -7,9 +7,6 @@ services:
       - 6379:6379
     volumes:
       - ./redis_data:/data
-    restart: always
-    command: >
-      --requirepass ${REDIS_PASSWORD}
     env_file:
       - .env.prod
 
